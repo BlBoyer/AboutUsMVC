@@ -1,0 +1,65 @@
+@model AboutUs.Models.Profile
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="d-flex">
+        <i class="bi-box-arrow-left text-primary" style="font-size:1.5em;" aria-label="back"></i>
+        <a asp-action="Index" class="align-self-center mx-1" >Back to List</a>
+</div>
+<hr />
+<div class="row">
+<div class="col-lg-auto">
+    <h4>Profile</h4>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Business)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Business)
+        </dd>
+    </dl>
+    <hr />
+    <div class="col-md-4">
+    <form asp-action="Delete">
+        <label name="Password" class="control-label"><h4>Password</h4></label>
+        <input name="password" type="password" data-val="true" data-val-minlength-min="8" data-val-regex-pattern="^[A-Za-z]\S+$" data-val-minlength="Password must be at least 8 characters." data-val-regex="Password must meet criteria." data-val-required="Password is required." class="form-control" />
+        <span data-valmsg-for="password" data-valmsg-replace="true" class="text-danger"></span>
+        <input type="hidden" asp-for="Id" />
+        <hr />
+        <input type="submit" value="Delete" class="btn btn-danger btn-spec" />
+    </form>
+    </div>
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

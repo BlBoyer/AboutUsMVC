@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Lookup";
+}
+<h4>Lookup</h4>
+<p>Finding someone's AboutUs page is easy...Just type in their username and hit go!</p>
+<div class="row">
+<div class="col-md-4">
+<form asp-action="Lookup" class="row">
+<input name="_username" type="search" placeholder="search..." class="form-control" />
+<input type="submit" value="Go" class="btn btn-primary btn-spec" />
+</form>
+</div>
+</div>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Error";
+}
+
+<h1>Error.</h1>
+<h2>An error occurred while processing your request.</h2>
+<hr />
+<div>
+    <p>
+    <strong>Error Code:</strong>  <code>@Model.code</code>
+    @Model.msg
+    </p>
+    <br />
+</div>
+<div class="d-flex justify-content-end">
+   <p><strong>Related Links:</strong></p>
+   <ul class="row"> @{
+       if(@Model.code == 400 || @Model.code == 401 || @Model.code == 404){
+           <a class="nav-dark" asp-controller="Home" asp-action="Index">Home</a>
+        }
+       if(@Model.code == 401 || @Model.code == 700 || @Model.code == 701){
+           <a class="nav-dark" asp-controller="Profile" asp-action="Create">Create an account</a>
+        }
+        if(@Model.code == 401 || @Model.code == 701 || @Model.code == 702){
+            <a class="nav-dark" asp-controller="Home" asp-action="Login">Log In</a>
+        }
+    }
+    </ul>
+</div>
+@section Styles {
+    <link href="@Url.Content("~/css/err.css")" rel="stylesheet" type="text/css" />
+}

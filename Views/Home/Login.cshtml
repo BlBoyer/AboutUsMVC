@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<h6 class="alert alert-info">Log-in to your Profile!</h6>
+<hr />
+<form asp-action="Login" id="mixedForm" class="alert alert-secondary col mx-5">
+    <div class="form-group col-4">
+        <label name="Username" class="control-label"><h4>Username</h4></label>
+        <input name="_username" type="text"  data-val="true" data-val-minlength-min="5" data-val-regex-pattern="^\S+$" data-val-minlength="Username must be at least 5 characters." data-val-regex="Username must meet criteria." data-val-required="Username is required." class="form-control" />
+        <span data-valmsg-for="_username" data-valmsg-replace="true" class="text-danger"></span>
+    </div><br />
+     <div class="form-group col-4">
+        <label name="Password" class="control-label"><h4>Password</h4></label>
+        <input name="_password" type="password" data-val="true" data-val-minlength-min="8" data-val-regex-pattern="^[A-Za-z]\S+$" data-val-minlength="Password must be at least 8 characters." data-val-regex="Password must meet criteria." data-val-required="Password is required." class="form-control" />
+        <span data-valmsg-for="_password" data-valmsg-replace="true" class="text-danger"></span>
+    </div><br />
+    <div class="form-group col-4 d-flex justify-content-end">
+        <input type="submit" value="Submit" class="btn btn-primary btn-spec" />
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

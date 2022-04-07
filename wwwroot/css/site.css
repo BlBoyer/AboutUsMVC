@@ -1,0 +1,29 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.fade-out{
+  box-shadow: 0px 0px 5px 2px gray;
+}
+.secondary-select :hover {
+  background: gray;
+}
+.btn-spec {
+  border: 0px;
+  box-shadow: 0px 0px 3px 1px inset;
+  text-shadow: 0px 0px 2px lightgray;
+}

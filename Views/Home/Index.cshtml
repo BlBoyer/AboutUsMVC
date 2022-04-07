@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <hr />
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="border border-secondary border-3 border-bottom-0 rounded-top fade-out secondary-select">
+            <a class="nav-link text-dark" asp-action="Login">Log In</a>
+            </div>
+            <div class="border border-secondary border-3 border-top-0 border-bottom-0 fade-out secondary-select">
+            <a class="nav-link text-dark" asp-action="Lookup">Lookup</a>
+            </div>
+            <div class="border border-secondary border-3 border-top-0 rounded-bottom fade-out secondary-select">
+            <a class="nav-link text-dark" asp-controller="Password" asp-action="Index">Manage Profiles(Administrator)</a>
+            </div>
+        </div>
+        <div class="col-md-4 alert alert-secondary">
+        <p>Let's get started! Click the clink below to create an account.<i class="bi-arrow-down"></i></p>
+        <a class="nav-dark bg-white p-1 border border-light border-4 rounded" asp-controller="Profile" asp-action="Create">Create an account</a>
+        </div>
+    </div>
+</div>

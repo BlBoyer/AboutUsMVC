@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = @Model.profile.UserName;
+}
+<div class="row py-2 rounded-1" style="background-image: url(@Url.Content(@Model.content.ProfileImg)); background-size: 100% 100%;">
+    <h1>@Model.profile.UserName</h1>
+</div>
+<table class="table">
+        <tr class="d-flex justify-content-start">
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="@Url.Content(@Model.content.ProfileImg)" class="card-img-top" alt="...">
+                    <div class="card-body text-dark">
+                        <span class="d-flex justify-content-between">
+                        <h5 class="card-title">@Model.profile.Name</h5>
+                        </span>
+                    <hr />
+                    <p class="card-text text-dark">@Model.content.Title - @Model.content.Place</p>
+                    <a href="mailto:@Model.profile.Email" class="btn btn-primary btn-small btn-spec">Send Message</a>
+                </div>
+            </td>
+            <td>
+                <span><strong>Likes:</strong></span>
+                <br />
+                @foreach (string like in @Model.likes) {
+                   <span class="badge rounded-pill bg-secondary">@like</span>
+                   }
+                <hr />
+                <span><strong>Skills/Qualifications</strong></span>
+                <br />
+                @foreach (string skill in @Model.qualifications) {
+                   <span class="badge rounded-pill bg-primary">@skill</span>
+                   }
+            </td>
+            <td class="col-4 top-0 start-0">
+                <span><strong>About:</strong></span>
+                <br />
+                @Model.content.About
+            </td>
+        </tr>
+</table>
+@section Styles {
+    <link href="@Url.Content("~/css/profile.css")" rel="stylesheet" type="text/css" />
+}

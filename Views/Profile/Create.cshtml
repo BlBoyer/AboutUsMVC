@@ -1,0 +1,55 @@
+@model AboutUs.Models.Profile
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Profile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Business" class="control-label"></label>
+                <input asp-for="Business" class="form-control" />
+                <span asp-validation-for="Business" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label name="Password" class="control-label" required>Password</label>
+                <input name="password" type="password" data-val="true" data-val-minlength-min="8" data-val-regex-pattern="^[A-Za-z]\S+$" data-val-minlength="Password must be at least 8 characters." data-val-regex="Password must meet criteria." data-val-required="Password is required." class="form-control" />
+                <span class="text-danger" data-valmsg-for="password" data-valmsg-replace="true"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary btn-spec" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
