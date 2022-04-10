@@ -69,7 +69,7 @@ app.Use(async (context, next) =>
                 msgStr = value;
             }
             string msg = new SecureAddress().singleCode(msgStr);
-            context.Response.Redirect($"~/Home/ErrorPage?code={response.StatusCode}&msg={msg}", false);
+            context.Response.Redirect($"/Home/ErrorPage?code={response.StatusCode}&msg={msg}", false);
             return;
         }
         Console.WriteLine($"Using address: {context.Connection.RemoteIpAddress}");
