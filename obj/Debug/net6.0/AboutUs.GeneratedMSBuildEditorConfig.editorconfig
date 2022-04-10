@@ -8,81 +8,81 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AboutUs
 build_property.RootNamespace = AboutUs
-build_property.ProjectDir = C:\Users\Ben\Documents\xdrive\Apples\Projects\AboutUs\AboutUsMVC\
+build_property.ProjectDir = c:\Users\Ben\Documents\xdrive\Apples\Projects\AboutUs\AboutUsMVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Ben\Documents\xdrive\Apples\Projects\AboutUs\AboutUsMVC
+build_property.MSBuildProjectDirectory = c:\Users\Ben\Documents\xdrive\Apples\Projects\AboutUs\AboutUsMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/ErrorPage.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/ErrorPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvclBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Index.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Login.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Lookup.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Lookup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb29rdXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Privacy.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Password/Index.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Password/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFzc3dvcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Create.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Delete.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Edit.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Index.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Profile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Shared/Error.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/User/Edit.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/User/Index.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/User/Search.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/User/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/_ViewImports.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/_ViewStart.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Shared/_Layout.cshtml]
+[c:/Users/Ben/Documents/xdrive/Apples/Projects/AboutUs/AboutUsMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-4qzxrybyvj
