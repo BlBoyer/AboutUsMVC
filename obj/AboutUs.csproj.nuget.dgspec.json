@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUs.csproj": {}
+    "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUsMVC\\AboutUs.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUs.csproj": {
+    "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUsMVC\\AboutUs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUs.csproj",
+        "projectUniqueName": "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUsMVC\\AboutUs.csproj",
         "projectName": "AboutUs",
-        "projectPath": "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUs.csproj",
+        "projectPath": "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUsMVC\\AboutUs.csproj",
         "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\obj\\",
+        "outputPath": "C:\\Users\\Ben\\Documents\\xdrive\\Apples\\Projects\\AboutUs\\AboutUsMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

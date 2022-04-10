@@ -7,9 +7,9 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ProfileContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Data:profile_context:ConnectionString")));
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:address_context"]));
 builder.Services.AddDbContext<AddressContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Data:address_context:ConnectionString")));
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:address_context"]));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,7 +22,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("Home/Error");
+    app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 } else {
@@ -69,7 +69,7 @@ app.Use(async (context, next) =>
                 msgStr = value;
             }
             string msg = new SecureAddress().singleCode(msgStr);
-            context.Response.Redirect($"https://aboutusmvc.azurewebsites.net/Home/ErrorPage?code={response.StatusCode}&msg={msg}", false);
+            context.Response.Redirect($"~/Home/ErrorPage?code={response.StatusCode}&msg={msg}", false);
             return;
         }
         Console.WriteLine($"Using address: {context.Connection.RemoteIpAddress}");
