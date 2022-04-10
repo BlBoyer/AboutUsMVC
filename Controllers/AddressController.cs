@@ -35,7 +35,7 @@ namespace AboutUs.Controllers;
                 AddressModel cross;
                 try {
                     cross = _context.Addresses.Single(a => a.Address == entry.Address);
-                    return RedirectToAction("Index", "Profile");
+                    return Forbid();
                 } catch (InvalidOperationException)
                 {
                     //execute, should be conditional for no elements exception
@@ -43,7 +43,7 @@ namespace AboutUs.Controllers;
                     await _context.SaveChangesAsync();
                     //var result = new JsonResult(entry);
                     //return result;
-                    return Redirect("Home/Login");
+                    return Redirect("/Home/Login");
                  }
             } else 
             {
@@ -56,6 +56,7 @@ namespace AboutUs.Controllers;
         {
             _context.Addresses.RemoveRange(_context.Addresses);
             await _context.SaveChangesAsync();
+            //make sure addresses were deleted
             return new JsonResult(_context.Addresses);
         }
     } 

@@ -65,7 +65,7 @@ public class HomeController : Controller
         {    
             SessionService.selectUser(profile.UserName, "ord");
             SessionService.activateUser();
-            return Redirect($"~/User/Index/{profile.UserName}");
+            return Redirect($"/User/Index/{profile.UserName}");
         }
         return Json(new {InternalError="Can't Log In"}); //Tell us if there's a problem logging in
     }

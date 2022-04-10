@@ -27,7 +27,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(options => 
+options.SwaggerEndpoint("/swagger/v1/swagger.json", "AboutUs API V1"));
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
