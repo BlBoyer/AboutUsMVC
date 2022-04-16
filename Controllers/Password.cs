@@ -5,6 +5,12 @@ namespace AboutUs.Controllers;
 
 public class PasswordController : Controller
 {
+    private readonly IConfiguration _config;
+    public PasswordController(IConfiguration config)
+    {
+        _config = config;
+    }
+
 public IActionResult Index()
 {
     return View();
@@ -13,7 +19,7 @@ public IActionResult Index()
 [HttpPost]
 public IActionResult Index(string _password)
 {
-    if(_password == "benjamin")
+    if(_password == _config["myAdminPassword"])
     {
         SessionService.activateAdmin();
         return RedirectToAction("Index", "Profile");
