@@ -41,7 +41,7 @@ namespace AboutUs.Controllers
             if (ModelState.IsValid && password != null)
             {
                 Profile user;
-                try { 
+                try {
                     user = _context.Profile.Single(p => p.UserName == profile.UserName);
                     } catch (InvalidOperationException) {
                     var content = new Content()

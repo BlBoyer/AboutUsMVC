@@ -7,7 +7,7 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ProfileContext>(options =>
-    options.UseSqlServer(builder.Configuration["ConnectionStrings:address_context"]));
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:profile_context"]));
 builder.Services.AddDbContext<AddressContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:address_context"]));
 
