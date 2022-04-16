@@ -6,7 +6,8 @@ using AboutUs.Data;
 using AboutUs.Models;
 using AboutUs.Services;
 
-namespace AboutUs.Controllers;
+namespace AboutUs.Controllers
+{
     //we authorize this for only loggd-in users, then, make sure we have view result for finding profiles/ disable edits for other users
     //[Authorize]
 public class UserController : Controller
@@ -143,4 +144,5 @@ public class UserController : Controller
             List<string> qualifications  = content.Qualifications.Split(' ').ToList();
             return View(new{profile, content, likes, qualifications});
     }
+}
 }
