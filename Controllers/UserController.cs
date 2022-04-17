@@ -12,12 +12,12 @@ namespace AboutUs.Controllers
     //[Authorize]
 public class UserController : Controller
 {
-        private readonly ProfileContext _context;
+    private readonly ProfileContext _context;
 
-        public UserController(ProfileContext context)
-        {
-            _context = context;
-        }
+    public UserController(ProfileContext context)
+    {
+        _context = context;
+     }
         //make a controller layout for this so we don't have to display index in route and the ird is called username
         public IActionResult Index(string id) //auth
         {
@@ -85,38 +85,31 @@ public class UserController : Controller
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,ProfileImg,BgImg,Title,About,Likes,Qualifications,Place")] Content content)
+    public async Task<IActionResult> Edit(string id, [Bind("Id,UserName,ProfileImg,BgImg,Title,About,Likes,Qualifications,Place")] Content content)
+    {
+        if (ModelState.IsValid)
         {
-            SessionService.selectUser(content.UserName, "ord");
-            if (SessionService.verifyUser() || SessionService.adminStatus())
+            try
             {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(content);
-                    await _context.SaveChangesAsync();
-                }
-                //catching?
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (content == null)
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index", new{id = content.UserName});
+                _context.Update(content);
+                await _context.SaveChangesAsync();
             }
-            return View(content);
+            //catching?
+            catch (DbUpdateConcurrencyException)
+            {
+                if (content == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Index", new{id = content.UserName});
         }
-        else 
-        {
-            return Unauthorized();
-        }
+           // return View(content);
+        return new JsonResult(new {content});
     }
     public IActionResult Search(string username)
     {
