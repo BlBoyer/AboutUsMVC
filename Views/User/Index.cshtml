@@ -1,7 +1,7 @@
 @{
     ViewData["Title"] = @Model.profile.UserName;
 }
-<div class="row py-2 rounded-1" style="background-image: url(@Url.Content(@Model.content.ProfileImg)); background-size: 100% 100%;">
+<div class="row py-2 rounded-1" style="background-image: url(@Url.Content(@Model.content.BgImg)); background-size: 100% 100%;">
     <h1>@Model.profile.UserName</h1>
 </div>
 <p class="d-flex justify-content-end">

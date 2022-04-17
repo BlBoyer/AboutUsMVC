@@ -15,7 +15,7 @@
         <h4>Content</h4>
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
             <input type="hidden" asp-for="UserName" />
             <div class="form-group">
                 <label asp-for="ProfileImg" class="control-label"></label>
