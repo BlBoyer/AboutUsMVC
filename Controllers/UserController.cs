@@ -108,8 +108,7 @@ public class UserController : Controller
             }
             return RedirectToAction("Index", new{id = content.UserName});
         }
-           // return View(content);
-        return new JsonResult(new {content});
+        return BadRequest();
     }
     public IActionResult Search(string username)
     {

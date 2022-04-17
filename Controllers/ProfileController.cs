@@ -62,7 +62,7 @@ namespace AboutUs.Controllers
                     }
                 return new ContentResult() {Content="", StatusCode=702};
             }
-            return View(profile);
+            return BadRequest();
         }
         public async Task<IActionResult> Edit(int? id)
         {
