@@ -1,71 +1,62 @@
 using AboutUs.Models;
-using System.Text.Json;
 namespace AboutUs.Services;
- public static class SessionService
+public class SessionService
 {
-    //create admin code
-    //private static string adminCode="admin";
-    //create user code
-    //private static string userCode="ord";
-    private static bool isAdmin = false;
-    private static string? username{get; set;}
-    public static string? remoteIp{get; set;}
-    private static string? uCode{get; set;}
-   
-    public static List<Identity> People = new List<Identity>();
-    //change the username and code to verify, verify takes in ip and returns verification value
-    //this allows the user instance to change, activate can be called externally
-    //selectUser, then activateUser()
-    public static void selectUser(string _userName, string _code)
-    {
-        username = _userName;
-        uCode = _code;
-    }
     //check if the user is in instance
-    public static bool verifyUser()
+    private bool _isAdmin;
+    public SessionService()
     {
-        foreach (var i in People)
+        _isAdmin = false;
+    }
+    public Identity? verifyUser(Identity user)
+    {
+        //we have to force a logout to login on same device
+        try 
         {
-            if (i.UserName == username && i.ip == remoteIp && i.code == uCode){
-                return true;
-            }
-
+            return Session.People.Single(i => i == user);
+        } 
+        catch
+        {
+            return null;
         }
-        return false;
-        //var identity = new Identity {UserName = username, ip = remoteIp, code = uCode};
+        //return Session.People.Single(i => i == user);
+/*         foreach (var i in Session.People)
         //return (identities.Contains(identity)); //doesn't work
+*/
     }
-    public static bool adminStatus()
+    public bool adminStatus()
     {
-        return isAdmin;
+        return _isAdmin;
     }
-    public static void activateUser()
+    public void activateUser(string ip, string username, string uCode)
     {
-        var user = new Identity {UserName = username, ip = remoteIp, code = uCode};
-        People.Add(user);
+        var user = new Identity {UserName = username, ip = ip, code = uCode};
+        Session.People.Add(user);
     }
-    public static string getMyUserName()
+    public Identity? getUser(string ip)
     {
-        return username;
-    }
-    public static void activateAdmin()
-    {
-        isAdmin = true;
-    }
-    public static void Logout()
-    {
-        Identity? user = null;
-         foreach (var i in People)
+        //test userName should not be null
+        try 
         {
-            if (i.UserName == username && i.ip == remoteIp && i.code == uCode)
-            {
-                user = i;
-            }
+            return Session.People.Single(p => p.ip == ip);
+        } catch
+        {
+        return null;
         }
-        if (user != null)
+    }
+    public void activateAdmin()
+    {
+        //change code to admin instead
+        _isAdmin = true;
+    }
+    public void Logout(string ip)
+    {
+        try
         {
-            People.Remove(user);
-        } else
+            //this could be remove all with ip, but we only want one user logged in so NO
+            var user = Session.People.Single(u => u.ip == ip);
+            Session.People.Remove(user);
+        } catch 
         {
             return;
         }

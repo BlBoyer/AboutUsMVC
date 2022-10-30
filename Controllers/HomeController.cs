@@ -11,26 +11,37 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
      private readonly AddressContext _contextAddress;
     private readonly ProfileContext _contextProfile;
+    private readonly IdentityProvider _idProvider;
+    private readonly SessionService _sessionService;
 
-    public HomeController(ILogger<HomeController> logger, ProfileContext contextProfile, AddressContext contextAddress)
+    public HomeController(ILogger<HomeController> logger, ProfileContext contextProfile, AddressContext contextAddress, IdentityProvider idProvider, SessionService sessionService)
     {
         _logger = logger;
         _contextProfile = contextProfile;
         _contextAddress = contextAddress;
+        _idProvider = idProvider;
+        _sessionService = sessionService;
         
     }
 
     public IActionResult Index()
     {
+        _logger.LogInformation("First log attempt".);
         return View();
     }
 
     public IActionResult Login()
     {
+        if (_idProvider.GetUser() != null)
+        {
+            //return already logged in
+            return new ContentResult(){ Content = "", StatusCode = 703 };
+        }
         return View();
     }
     [HttpPost]
     //put _username and _password in view like the link, bind to the form action
+    //DON'T LOGIN USER IF IP IS ALREADY LOGGED IN!!
     public IActionResult Login(string _username, string _password)
     {
         //get username and password form form data
@@ -63,11 +74,12 @@ public class HomeController : Controller
         //return RedirectToAction("Details", "Profile", _username); //used the same naming convention...created errors
         if (passKey.Address == _address)
         {    
-            SessionService.selectUser(profile.UserName, "ord");
-            SessionService.activateUser();
+            //logging in from form, need to store session data here
+            //_sessionService.selectUser(profile.UserName, "ord");
+            _sessionService.activateUser(_idProvider.GetIp(), profile.UserName, "ord");
             return Redirect($"/User/Index/{profile.UserName}");
         }
-        return Json(new {InternalError="Can't Log In"}); //Tell us if there's a problem logging in
+        return Json(new {InternalError="Can't Log In."}); //Tell us if there's a problem logging in
     }
     [ActionName("Delete")]
     [AcceptVerbs("Get", "Post")]
@@ -134,7 +146,7 @@ public class HomeController : Controller
     }
     public IActionResult Logout()
     {
-        SessionService.Logout();
+        _sessionService.Logout(_idProvider.GetIp());
         return RedirectToAction("Index");
     }
     public IActionResult Lookup()

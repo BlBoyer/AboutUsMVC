@@ -1,6 +1,5 @@
 #nullable enable
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using AboutUs.Data;
 using AboutUs.Models;
@@ -13,10 +12,14 @@ namespace AboutUs.Controllers
 public class UserController : Controller
 {
     private readonly ProfileContext _context;
+    private readonly IdentityProvider _idProvider;
+    private readonly SessionService _sessionService;
 
-    public UserController(ProfileContext context)
+    public UserController(ProfileContext context, IdentityProvider idProvider, SessionService sessionService)
     {
         _context = context;
+        _idProvider = idProvider;
+        _sessionService = sessionService;
      }
         //make a controller layout for this so we don't have to display index in route and the ird is called username
         public IActionResult Index(string id) //auth
@@ -24,35 +27,34 @@ public class UserController : Controller
             if (id == null)
             {
                 //if user can verify before selecting, then we are logged in, set id, skip select user
-                if (!SessionService.verifyUser())
+                if (_idProvider.GetUser() == null)
                 {
                     return NotFound();
                 }
-                id = SessionService.getMyUserName();
-            } else 
-            {
-                SessionService.selectUser(id, "ord");
+                //reset id if logged in and id isn't provided(link clicked)
+                id = _idProvider.GetUser().UserName!;
             }
-            if (SessionService.verifyUser() || SessionService.adminStatus())
+            //id is provided, needs authorization
+            if (_idProvider.GetUser() != null || _sessionService.adminStatus())
             {
-            Profile profile;
-            try{
-                profile = _context.Profile
-            .Single(p => p.UserName == id);
-            } catch (InvalidOperationException)
-            {
-                return new ContentResult() { Content = "", StatusCode = 700 };
-            }
-            Content content;
-            try{
-                content = _context.Content.Single(c => c.UserName == id);
-            } catch (InvalidOperationException)
-            {
-                return new ContentResult(){Content="", StatusCode=500};
-            }
-            List<string> likes  = content.Likes.Split(' ').ToList();
-            List<string> qualifications  = content.Qualifications.Split(' ').ToList();
-            return View(new{profile, content, likes, qualifications});
+                Profile profile;
+                try{
+                    profile = _context.Profile
+                .Single(p => p.UserName == id);
+                } catch (InvalidOperationException)
+                {
+                    return new ContentResult() { Content = "", StatusCode = 700 };
+                }
+                Content content;
+                try{
+                    content = _context.Content.Single(c => c.UserName == id);
+                } catch (InvalidOperationException)
+                {
+                    return new ContentResult(){Content="", StatusCode=500};
+                }
+                List<string> likes  = content.Likes.Split(' ').ToList();
+                List<string> qualifications  = content.Qualifications.Split(' ').ToList();
+                return View(new{profile, content, likes, qualifications});
             } else 
             {
                 return Unauthorized();
@@ -65,8 +67,8 @@ public class UserController : Controller
             {
                 return NotFound();
             }
-            SessionService.selectUser(id, "ord");
-            if (SessionService.verifyUser() || SessionService.adminStatus())
+            //_sessionService.selectUser(id, "ord");
+            if (_idProvider.GetUser() != null || _sessionService.adminStatus())
             {
                 Content content;
                 try
@@ -112,7 +114,7 @@ public class UserController : Controller
     }
     public IActionResult Search(string username)
     {
-     /*if (!SessionService.verifyUser())
+     /*if (!_sessionService.verifyUser())
         {
             return "Not logged in!";
         }*/

@@ -3,15 +3,17 @@ using System.Collections;
 using Microsoft.OpenApi.Models;
 using AboutUs.Data;
 using AboutUs.Services;
-using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ProfileContext>(options =>
-    options.UseSqlServer(builder.Configuration["ConnectionStrings:profile_context"]));
+    options.UseSqlite(builder.Configuration["ConnectionStrings:profile_context"]));
 builder.Services.AddDbContext<AddressContext>(options =>
-    options.UseSqlServer(builder.Configuration["ConnectionStrings:address_context"]));
+    options.UseSqlite(builder.Configuration["ConnectionStrings:address_context"]));
 
 // Add services to the container.
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IdentityProvider>();
+builder.Services.AddTransient<SessionService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
@@ -33,7 +35,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 //custom error routing
-app.Use(async (context, next) =>
+/* app.Use(async (context, next) =>
 	{
 		await next.Invoke();
 		//Pass all successful http response codes:
@@ -60,7 +62,8 @@ app.Use(async (context, next) =>
                 {507, "Oops..No more room!"},
                 {700, "Username Not Found. If you aren't a user, please create and account."},
                 {701, "Oops...! Your credentials are invalid."},
-                {702, "Oops...! This username already exists. Are you trying to sign-in?"}
+                {702, "Oops...! This username already exists. Are you trying to sign-in?"},
+                {703, "You're already logged in!"}
             };
             string msgStr = "Internal Access Error.";
             var value="";
@@ -73,12 +76,9 @@ app.Use(async (context, next) =>
             return;
         }
         Console.WriteLine($"Using address: {context.Connection.RemoteIpAddress}");
-	});
-//ip getter
-app.Use(async (context, next) => {
-    await next.Invoke();
-    SessionService.remoteIp = context.Connection.RemoteIpAddress.ToString();
-});
+	}); */
+app.UseErrorHandler();
+app.UseAuthHandler();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"

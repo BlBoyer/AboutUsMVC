@@ -10,17 +10,21 @@ namespace AboutUs.Controllers
     public class ProfileController : Controller
     {
         private readonly ProfileContext _context;
+        private readonly IdentityProvider _idProvider;
+        private readonly SessionService _sessionService;
 
-        public ProfileController(ProfileContext context)
+        public ProfileController(ProfileContext context, IdentityProvider idProvider, SessionService sessionService)
         {
             _context = context;
+            _idProvider = idProvider;
+            _sessionService = sessionService;
         }
         //this will be an onlyOwner Index, so we can do anything to profiles...hahaha
         //needs authorization, which we will have to execute in the password page
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            if (SessionService.adminStatus())
+            if (_sessionService.adminStatus())
             {
             return View(await _context.Profile.ToListAsync());
             } else 
@@ -75,8 +79,8 @@ namespace AboutUs.Controllers
             {
                 return NotFound();
             }
-            SessionService.selectUser(profile.UserName, "ord");
-            if (SessionService.verifyUser() || SessionService.adminStatus())
+            //should be if we have an identity in our response, then getUsername and check that they are the same
+            if (_idProvider.GetUser().UserName == profile.UserName || _sessionService.adminStatus())
             {
             return View(profile);
             } else
@@ -114,7 +118,7 @@ namespace AboutUs.Controllers
         //only manager can delete by request
         public async Task<IActionResult> Delete(int? id)
         {
-            if (!SessionService.adminStatus())
+            if (!_sessionService.adminStatus())
             {
                 return Unauthorized();
             }

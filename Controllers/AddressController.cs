@@ -50,7 +50,6 @@ namespace AboutUs.Controllers;
                 return BadRequest();
             }
         }
-        //auth with (SessionService.isAdmin)
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {
