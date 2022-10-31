@@ -6,7 +6,7 @@ Site layout:
   
 Home page  
   -Login - allows a user to log-in.  
-  -Lookup - allows a search to made on a user.  
+  -Lookup - allows a search to be made on a the user database.  
   -Manage profiles - allows an admin to moderate user content.  
 User page  
   -Displays user profile and content.  
