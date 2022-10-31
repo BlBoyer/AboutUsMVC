@@ -41,7 +41,6 @@ public class HomeController : Controller
     }
     [HttpPost]
     //put _username and _password in view like the link, bind to the form action
-    //DON'T LOGIN USER IF IP IS ALREADY LOGGED IN!!
     public IActionResult Login(string _username, string _password)
     {
         //get username and password form form data
@@ -53,13 +52,12 @@ public class HomeController : Controller
             .Single(p => p.UserName == _username);
         } catch (InvalidOperationException)
         {
-            //this returns regular status code pages **
-            //return StatusCode(404,"User not found.");
             return new ContentResult() { Content = "", StatusCode = 700 };
         }
         string _address = new SecureAddress().mesh(_username, _password);
         if (_address == null)
         {
+            _logger.LogError(500, "Address not created", "Could not create address");
             return StatusCode(500);
         }
         AddressModel passKey;
@@ -71,12 +69,10 @@ public class HomeController : Controller
             //return Json(new {InternalError="Can't Log In"})
             return new ContentResult() { Content = "", StatusCode = 701 };
         }
-        //return RedirectToAction("Details", "Profile", _username); //used the same naming convention...created errors
         if (passKey.Address == _address)
         {    
-            //logging in from form, need to store session data here
-            //_sessionService.selectUser(profile.UserName, "ord");
             _sessionService.activateUser(_idProvider.GetIp(), profile.UserName, "ord");
+            _logger.LogInformation($"Activated user {profile.UserName}");
             return Redirect($"/User/Index/{profile.UserName}");
         }
         return Json(new {InternalError="Can't Log In."}); //Tell us if there's a problem logging in
@@ -107,6 +103,7 @@ public class HomeController : Controller
         string _address = new SecureAddress().mesh(profile.UserName, _password);
         if (_address == null)
         {
+            _logger.LogError(500, "Address not created", "Could not create address");
             return StatusCode(500);
         }
         AddressModel passKey;
@@ -125,6 +122,7 @@ public class HomeController : Controller
             await _contextProfile.SaveChangesAsync();
             _contextProfile.Remove(content);
             await _contextProfile.SaveChangesAsync();
+            _logger.LogInformation("User: {profile.UserName} has been deleted.");
         return RedirectToAction("Index");
         }
         return Json(new {InternalError="Couldn't Perform Delete"}); //Tell us if there's a problem deleting info

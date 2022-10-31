@@ -9,9 +9,11 @@ namespace AboutUs.Controllers;
     public class AddressController : ControllerBase
     {
         private readonly AddressContext _context;
-        public AddressController(AddressContext context)
+        private readonly ILogger _logger;
+        public AddressController(AddressContext context, ILogger<AddressController> logger)
         {
             _context = context;
+            _logger = logger;
         }
         //auth
         [HttpGet("ViewKeys")]
@@ -27,9 +29,6 @@ namespace AboutUs.Controllers;
         {
             if (_username!=null && _password!=null){
                 string address = new SecureAddress().mesh(_username, _password);
-               /* var entries = from a in _context.Addresses
-                select a;*/
-                //turn our address into db context, we need to get the right id or insert or something
                 var entry = new AddressModel(){Address=address};
                 //make sure address doesn't exist in the dbcontext
                 AddressModel cross;
@@ -41,8 +40,7 @@ namespace AboutUs.Controllers;
                     //execute, should be conditional for no elements exception
                     _context.Add(entry);
                     await _context.SaveChangesAsync();
-                    //var result = new JsonResult(entry);
-                    //return result;
+                    _logger.LogInformation("New user credentials created successfully.");
                     return Redirect("/Home/Login");
                  }
             } else 

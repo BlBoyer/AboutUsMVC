@@ -17,7 +17,7 @@ public class AuthHandler
         //request handler
         //get ip @request
         var userIp = context.Connection.RemoteIpAddress!.ToString();
-        //authorize ip against static people, can we map this to a principal and use authorize???
+        //authorize ip against static people
         Identity? user = _sessionService.getUser(userIp);
         //at this point the user may be null
         context.Items["userIdentity"] = JsonSerializer.Serialize<Identity>(user);

@@ -7,8 +7,6 @@ using AboutUs.Services;
 
 namespace AboutUs.Controllers
 {
-    //we authorize this for only loggd-in users, then, make sure we have view result for finding profiles/ disable edits for other users
-    //[Authorize]
 public class UserController : Controller
 {
     private readonly ProfileContext _context;
@@ -21,17 +19,17 @@ public class UserController : Controller
         _idProvider = idProvider;
         _sessionService = sessionService;
      }
-        //make a controller layout for this so we don't have to display index in route and the ird is called username
-        public IActionResult Index(string id) //auth
+        //make a controller layout for this so we don't have to display index in route and the id is called username
+        public IActionResult Index(string id)
         {
             if (id == null)
             {
-                //if user can verify before selecting, then we are logged in, set id, skip select user
+                //if user can be verified, then we are logged in
                 if (_idProvider.GetUser() == null)
                 {
                     return NotFound();
                 }
-                //reset id if logged in and id isn't provided(link clicked)
+                //reset id if logged in and id isn't provided(link clicked), for profile context search
                 id = _idProvider.GetUser().UserName!;
             }
             //id is provided, needs authorization
@@ -61,13 +59,12 @@ public class UserController : Controller
             }
         }
        
-        public async Task<IActionResult> Edit(string id) //auth
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            //_sessionService.selectUser(id, "ord");
             if (_idProvider.GetUser() != null || _sessionService.adminStatus())
             {
                 Content content;
@@ -114,11 +111,6 @@ public class UserController : Controller
     }
     public IActionResult Search(string username)
     {
-     /*if (!_sessionService.verifyUser())
-        {
-            return "Not logged in!";
-        }*/
-        //maybe we get profile listing profiles and only allowing selection
         Profile profile;
             try{
                 profile = _context.Profile

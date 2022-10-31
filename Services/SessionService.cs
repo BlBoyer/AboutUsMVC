@@ -4,8 +4,10 @@ public class SessionService
 {
     //check if the user is in instance
     private bool _isAdmin;
-    public SessionService()
+    private readonly ILogger _logger;
+    public SessionService(ILogger<SessionService> logger)
     {
+        _logger = logger;
         _isAdmin = false;
     }
     public Identity? verifyUser(Identity user)
@@ -19,10 +21,6 @@ public class SessionService
         {
             return null;
         }
-        //return Session.People.Single(i => i == user);
-/*         foreach (var i in Session.People)
-        //return (identities.Contains(identity)); //doesn't work
-*/
     }
     public bool adminStatus()
     {
@@ -30,8 +28,16 @@ public class SessionService
     }
     public void activateUser(string ip, string username, string uCode)
     {
-        var user = new Identity {UserName = username, ip = ip, code = uCode};
-        Session.People.Add(user);
+        //if ip exists, then don't log in. the controller blocks the page if we're logged in, but, just in-case
+        if (Session.People.Any(p => p.ip == ip))
+        {
+            return;
+        } 
+        else 
+        {
+            var user = new Identity {UserName = username, ip = ip, code = uCode};
+            Session.People.Add(user);
+        }
     }
     public Identity? getUser(string ip)
     {
@@ -46,18 +52,17 @@ public class SessionService
     }
     public void activateAdmin()
     {
-        //change code to admin instead
         _isAdmin = true;
     }
     public void Logout(string ip)
     {
         try
         {
-            //this could be remove all with ip, but we only want one user logged in so NO
             var user = Session.People.Single(u => u.ip == ip);
             Session.People.Remove(user);
-        } catch 
+        } catch (Exception e)
         {
+            _logger.LogInformation($"Logout: Our exception should be null: {e.Message}");
             return;
         }
     }

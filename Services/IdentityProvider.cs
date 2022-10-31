@@ -3,9 +3,6 @@ using AboutUs.Models;
 public class IdentityProvider
 {
     private readonly string _ip;
-    //map json content to identity
-    //user may be null, erro-check in controllers
-    //private readonly Identity? _user;
     private readonly IHttpContextAccessor _accessor; 
     public IdentityProvider(IHttpContextAccessor accessor)
     {

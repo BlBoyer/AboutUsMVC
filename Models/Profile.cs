@@ -16,7 +16,6 @@ namespace AboutUs.Models
         [Required]
         //not sure how we want to val yet
         public string? Email { get; set; }    //verification in app, this way we can make string items list and add as many fields as we desire(primary email secondary, etc)
-        //validate with businesses
         [Phone]
         [Required]
         public string? Phone { get; set; } 
