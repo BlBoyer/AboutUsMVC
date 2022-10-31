@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using System.Collections;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using AboutUs.Data;
 using AboutUs.Services;
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Host.UseSerilog((hostBuilderContext, loggerConfiguration) => loggerConfiguration
+    .WriteTo.Console());
 builder.Services.AddDbContext<ProfileContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings:profile_context"]));
 builder.Services.AddDbContext<AddressContext>(options =>

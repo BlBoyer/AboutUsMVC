@@ -5,10 +5,12 @@ public class AuthHandler
 {
     private readonly RequestDelegate _next;
     private readonly SessionService _sessionService;
-    public AuthHandler(RequestDelegate next, SessionService sessionService)
+    private readonly ILogger _logger;
+    public AuthHandler(RequestDelegate next, SessionService sessionService, ILogger<AuthHandler> logger)
     {
         _next = next;
         _sessionService = sessionService;
+        _logger = logger;
     }
     public async Task Invoke(HttpContext context)
     {
@@ -20,6 +22,7 @@ public class AuthHandler
         //at this point the user may be null
         context.Items["userIdentity"] = JsonSerializer.Serialize<Identity>(user);
         //now we can authorize or pass identity into the request and auth or no auth in controller
+        _logger.LogInformation("identity for this request: " + context.Items["userIdentity"]);
         await _next(context);
     }
 }

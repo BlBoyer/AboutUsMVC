@@ -26,7 +26,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        _logger.LogInformation("First log attempt".);
+        _logger.LogInformation("Hello user, logging activated!");
         return View();
     }
 

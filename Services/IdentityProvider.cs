@@ -6,12 +6,11 @@ public class IdentityProvider
     //map json content to identity
     //user may be null, erro-check in controllers
     //private readonly Identity? _user;
-    IHttpContextAccessor _accessor; 
+    private readonly IHttpContextAccessor _accessor; 
     public IdentityProvider(IHttpContextAccessor accessor)
     {
         _accessor = accessor;
         _ip = accessor.HttpContext!.Connection.RemoteIpAddress!.ToString();
-        //_user = JsonSerializer.Deserialize<Identity>(accessor.HttpContext.Items["userIdentity"].ToString());
     }
     public string GetIp()
     {

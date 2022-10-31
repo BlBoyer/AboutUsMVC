@@ -871,3 +871,7 @@ C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\obj\De
 C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\obj\Debug\net6.0\scopedcss\bundle\AboutUs.styles.css
 C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\obj\Debug\net6.0\scopedcss\projectbundle\AboutUs.bundle.scp.css
+C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\bin\Debug\net6.0\Serilog.dll
+C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+C:\Users\boyer\Projects\Applications\Web\Integrated\AboutUsMVC\AboutUsMVC\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
