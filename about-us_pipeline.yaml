@@ -61,7 +61,7 @@ stages:
   - deployment: Deploy
     pool:
       vmImage: 'ubuntu-latest'
-    environment: Staging
+    environment: StagingEnv
     variables:
     - group: 'AboutUsEnv'
     strategy:
@@ -74,5 +74,5 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'AboutUs Resource Mgr'
-              appName: '$(stagingEnv)'
+              appName: '$(stagingEnvName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
