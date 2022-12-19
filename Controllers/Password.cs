@@ -7,10 +7,12 @@ public class PasswordController : Controller
 {
     private readonly IConfiguration _config;
     private readonly SessionService _sessionService;
-    public PasswordController(IConfiguration config, SessionService sessionService)
+    private IdentityProvider _identityProvider;
+    public PasswordController(IConfiguration config, SessionService sessionService, IdentityProvider identityProvider)
     {
         _config = config;
         _sessionService = sessionService;
+        _identityProvider = identityProvider;
     }
 
 public IActionResult Index()
@@ -23,7 +25,7 @@ public IActionResult Index(string _password)
 {
     if(_password == _config["myAdminPassword"])
     {
-        _sessionService.activateAdmin();
+        _sessionService.activateAdmin(_identityProvider.GetUser());
         return RedirectToAction("Index", "Profile");
     }
     return Unauthorized();

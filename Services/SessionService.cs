@@ -2,13 +2,10 @@ using AboutUs.Models;
 namespace AboutUs.Services;
 public class SessionService
 {
-    //check if the user is in instance
-    private bool _isAdmin;
     private readonly ILogger _logger;
     public SessionService(ILogger<SessionService> logger)
     {
         _logger = logger;
-        _isAdmin = false;
     }
     public Identity? verifyUser(Identity user)
     {
@@ -22,9 +19,9 @@ public class SessionService
             return null;
         }
     }
-    public bool adminStatus()
+    public bool adminStatus(Identity user)
     {
-        return _isAdmin;
+        return user.code == "admin";
     }
     public void activateUser(string ip, string username, string uCode)
     {
@@ -50,9 +47,11 @@ public class SessionService
         return null;
         }
     }
-    public void activateAdmin()
+    public void activateAdmin(Identity user)
     {
-        _isAdmin = true;
+        //get current user and add the admin code
+        Session.People.Single(u => u == user).code = "admin";
+        _logger.LogInformation($"User {Session.People.Single(u => u.UserName == user.UserName)} activated as admin!");
     }
     public void Logout(string ip)
     {

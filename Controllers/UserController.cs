@@ -33,7 +33,7 @@ public class UserController : Controller
                 id = _idProvider.GetUser().UserName!;
             }
             //id is provided, needs authorization
-            if (_idProvider.GetUser() != null || _sessionService.adminStatus())
+            if (_idProvider.GetUser() != null)
             {
                 Profile profile;
                 try{
@@ -65,7 +65,7 @@ public class UserController : Controller
             {
                 return NotFound();
             }
-            if (_idProvider.GetUser() != null || _sessionService.adminStatus())
+            if (_idProvider.GetUser() != null)
             {
                 Content content;
                 try

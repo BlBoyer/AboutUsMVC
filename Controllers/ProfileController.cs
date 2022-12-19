@@ -24,7 +24,7 @@ namespace AboutUs.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            if (_sessionService.adminStatus())
+            if (_sessionService.adminStatus(_idProvider.GetUser()))
             {
             return View(await _context.Profile.ToListAsync());
             } else 
@@ -80,7 +80,7 @@ namespace AboutUs.Controllers
                 return NotFound();
             }
             //should be if we have an identity in our response, then getUsername and check that they are the same
-            if (_idProvider.GetUser().UserName == profile.UserName || _sessionService.adminStatus())
+            if (_idProvider.GetUser().UserName == profile.UserName)
             {
             return View(profile);
             } else
@@ -118,7 +118,7 @@ namespace AboutUs.Controllers
         //only manager can delete by request
         public async Task<IActionResult> Delete(int? id)
         {
-            if (!_sessionService.adminStatus())
+            if (!_sessionService.adminStatus(_idProvider.GetUser()))
             {
                 return Unauthorized();
             }
