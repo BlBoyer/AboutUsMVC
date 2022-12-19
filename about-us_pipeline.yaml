@@ -73,6 +73,6 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure App Service Deploy: website'
             inputs:
-              azureSubscription: 'AboutUs Resource Mgr'
+              azureSubscription: 'About Us Resource Mgr'
               appName: '$(stagingEnvName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
