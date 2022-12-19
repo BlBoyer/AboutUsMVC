@@ -25,8 +25,16 @@ public IActionResult Index(string _password)
 {
     if(_password == _config["myAdminPassword"])
     {
-        _sessionService.activateAdmin(_identityProvider.GetUser());
-        return RedirectToAction("Index", "Profile");
+        var user = _identityProvider.GetUser();
+        if (user != null)
+        {
+            _sessionService.activateAdmin(user);
+            return RedirectToAction("Index", "Profile");
+        }
+        else
+        {
+            return new ContentResult(){Content="", StatusCode = 700};
+        }
     }
     return Unauthorized();
 }

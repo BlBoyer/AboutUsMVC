@@ -50,8 +50,8 @@ public class SessionService
     public void activateAdmin(Identity user)
     {
         //get current user and add the admin code
-        Session.People.Single(u => u == user).code = "admin";
-        _logger.LogInformation($"User {Session.People.Single(u => u.UserName == user.UserName)} activated as admin!");
+        Session.People.Single(u=>u.UserName == user.UserName).code = "admin";
+        _logger.LogInformation($"User {user.UserName} activated as admin!");
     }
     public void Logout(string ip)
     {
