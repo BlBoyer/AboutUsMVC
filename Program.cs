@@ -7,9 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((hostBuilderContext, loggerConfiguration) => loggerConfiguration
     .WriteTo.Console());
 builder.Services.AddDbContext<ProfileContext>(options =>
-    options.UseSqlite(builder.Configuration["ConnectionStrings:profile_context"]));
+    options.UseSqlite(builder.Configuration["profile_context"]));
 builder.Services.AddDbContext<AddressContext>(options =>
-    options.UseSqlite(builder.Configuration["ConnectionStrings:address_context"]));
+    options.UseSqlite(builder.Configuration["address_context"]));
 
 // Add services to the container.
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
